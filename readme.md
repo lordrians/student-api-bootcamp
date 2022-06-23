@@ -9,13 +9,13 @@ https://student-api-bootcamp.herokuapp.com/v1
 ## Table endpoints
 ### Student
 
-| Name                       | Endpoint                                                   | Method   | Body and response              |
-|----------------------------|------------------------------------------------------------|----------|--------------------------------|
-| Get all                    | `/student`                                                 | `GET`    | [example](#student---get-all)  |
-| Get by id                  | `/student/{id}`                                            | `GET`    | [example](#student---by-id)   |
-| Add new                    | `/student`                                                 | `POST`   | [example](#student---add-new) |
-| Update                     | `/student`                                                 | `PUT`    | [example](#student---update)  |
-| Remove                     | `/student`                                                 | `DELETE` | [example](#student---remove)  |
+| Name                       | Endpoint                                                   | Method   | Body and response               |
+|----------------------------|------------------------------------------------------------|----------|---------------------------------|
+| Get all                    | `/student`                                                 | `GET`    | [example](#student---get-all)   |
+| Get by id                  | `/student/{id}`                                            | `GET`    | [example](#student---get-by-id) |
+| Add new                    | `/student`                                                 | `POST`   | [example](#student---add-new)   |
+| Update                     | `/student`                                                 | `PUT`    | [example](#student---update)    |
+| Remove                     | `/student`                                                 | `DELETE` | [example](#student---remove)    |
 
 ---
 

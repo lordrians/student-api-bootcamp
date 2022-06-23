@@ -16,27 +16,25 @@ class StudentRepositoryImpl : StudentRepository{
     lateinit var databaseComponent: DatabaseComponent
 
 
-    private val studentCol = databaseComponent.studentDb.getCollection<Student>()
-
 
     override fun getAll(): Result<List<Student>> = tryCatch {
-        val listStudent = studentCol.find().toList()
+        val listStudent = databaseComponent.studentDb.getCollection<Student>().find().toList()
         Result.Success(listStudent)
     }
 
     override fun add(student: Student): Result<List<Student>> = tryCatch {
-        studentCol.findOne(Student::name eq student.name).run {
+        databaseComponent.studentDb.getCollection<Student>().findOne(Student::name eq student.name).run {
             if (this != null){
                 throw Exception("Data sudah ada")
             } else {
-                studentCol.insertOne(student)
+                databaseComponent.studentDb.getCollection<Student>().insertOne(student)
                 Result.Success(getAll().data)
             }
         }
     }
 
     override fun getById(id: String): Result<Student> = tryCatch {
-        studentCol.findOne(Student::id eq id).run {
+        databaseComponent.studentDb.getCollection<Student>().findOne(Student::id eq id).run {
             if (this == null){
                 throw Exception("Data tidak ada")
             } else {
@@ -46,7 +44,7 @@ class StudentRepositoryImpl : StudentRepository{
     }
 
     override fun remove(id: String): Result<List<Student>> = tryCatch {
-        studentCol.deleteOneById(Student::id eq id).run {
+        databaseComponent.studentDb.getCollection<Student>().deleteOneById(Student::id eq id).run {
             if (this.wasAcknowledged()){
                 throw Exception("Data tidak ada")
             } else {
@@ -56,7 +54,7 @@ class StudentRepositoryImpl : StudentRepository{
     }
 
     override fun update(student: Student): Result<Student> = tryCatch {
-        studentCol.findOneAndReplace(
+        databaseComponent.studentDb.getCollection<Student>().findOneAndReplace(
             Student::id eq student.id,
             student
         ).run {

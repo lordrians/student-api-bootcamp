@@ -52,7 +52,7 @@ class StudentRepositoryImpl : StudentRepository{
 
     override fun remove(id: String): Result<List<Student>> = tryCatch {
         databaseComponent.studentDb.getCollection<Student>().deleteOneById(Student::id eq id).run {
-            if (this.wasAcknowledged()){
+            if (this.deletedCount == 0L){
                 throw Exception("Data tidak ada")
             } else {
                 Result.Success(getAll().data)

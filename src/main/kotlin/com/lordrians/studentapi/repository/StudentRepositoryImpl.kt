@@ -68,7 +68,7 @@ class StudentRepositoryImpl : StudentRepository{
             if (this == null){
                 throw Exception("Data tidak ada")
             } else {
-                Result.Success(this)
+                Result.Success(student)
             }
         }
     }

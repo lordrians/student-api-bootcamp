@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository
 import com.lordrians.studentapi.Result
 import com.lordrians.studentapi.data
 import org.litote.kmongo.*
+import java.util.UUID
 
 @Repository
 class StudentRepositoryImpl : StudentRepository{
@@ -27,7 +28,13 @@ class StudentRepositoryImpl : StudentRepository{
             if (this != null){
                 throw Exception("Data sudah ada")
             } else {
-                databaseComponent.studentDb.getCollection<Student>().insertOne(student)
+                val newStudent = Student(
+                    id = UUID.randomUUID().toString(),
+                    name = student.name,
+                    gender = student.gender,
+                    className = student.className
+                )
+                databaseComponent.studentDb.getCollection<Student>().insertOne(newStudent)
                 Result.Success(getAll().data)
             }
         }
